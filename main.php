@@ -1,7 +1,7 @@
 <?php
-function poisk_cms($link)// Основная функция, осуществляет поиск cms=
+function poisk_cms()// Основная функция, осуществляет поиск cms=
 {
-    $mainfile = file("files/task.log");
+    $mainfile = file("/home/ihar/PhpstormProjects/testrab/1week.log");
     $result = []; //Результирующий Массив(изначально пустой)
     // Цикл, разбивающий массив строк $mainfile на отдельный строки $line
     foreach ($mainfile as $line) {
@@ -31,13 +31,13 @@ if (!$link) {
 }
 echo "Соединение с MySQL установлено!" . PHP_EOL;
 echo "Информация о сервере: " . mysqli_get_host_info($link) . PHP_EOL;
-$result = poisk_cms($link);
+$result = poisk_cms();
 $keys = (array_keys($result));//массив ключей кмс
 $values = (array_values($result));// массив значений кмс
 $i = 0;
 $date = date("Y-m-d", strtotime('yesterday')); //Получение верашней даты
 while ($i < count($keys)) {
-    $sql = "INSERT INTO test (cms , count , date) VALUES ( '$keys[$i]' , '$values[$i]' , '$date')";
+    $sql = "INSERT INTO test (cms , quantity , date) VALUES ( '$keys[$i]' , '$values[$i]' , '$date')";
     if (mysqli_query($link, $sql)) {
         echo "New record created successfully\n";
     } else {

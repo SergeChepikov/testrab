@@ -5,11 +5,11 @@
     <form action="" method="post">
         </br>
         </br>
-        <label>нижний край даты </label>
+        <label>Начало диапазона подсчёта вхождений </label>
         <input input type="date" name="niz"/>
         </br>
         </br>
-        <label>верхний край даты</label>
+        <label>Конец диапазона вхождений</label>
         <input input type="date" name="verh"/>
         </br>
         </br>
@@ -17,11 +17,9 @@
     </form>
 </div>
 <?php
-include("main.php");
+include("select.php");
 if (isset($_POST['button_submit'])) {
-    if (validate_date($_POST['niz'], $_POST['verh'])) {
-        poisk_cms($_POST['niz'], $_POST['verh']);
-    }
+    select_to_db_cms_from_date($_POST['niz'], $_POST['verh']);
 }
 ?>
 </body>
